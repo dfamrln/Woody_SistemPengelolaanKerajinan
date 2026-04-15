@@ -19,16 +19,6 @@ CREATE TABLE Pesanan (
     total_harga INT
 );
 
-CREATE TABLE DetailPesanan (
-    id_detail INT IDENTITY(1,1) PRIMARY KEY,
-    id_pesanan INT,
-    id_produk INT,
-    jumlah INT,
-    subtotal INT,
-
-    FOREIGN KEY (id_pesanan) REFERENCES Pesanan(id_pesanan),
-    FOREIGN KEY (id_produk) REFERENCES Produk(id_produk)
-);
 
 INSERT INTO Produk (nama_produk, jenis_kayu, harga, stok)
 VALUES 
