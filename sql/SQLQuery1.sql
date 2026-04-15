@@ -15,14 +15,9 @@ CREATE TABLE Produk (
 CREATE TABLE Pesanan (
     id_pesanan INT IDENTITY(1,1) PRIMARY KEY,
     tanggal_pesanan DATE NOT NULL,
-    status VARCHAR(50),
-    total_harga INT
+    id_produk INT NOT NULL,
+    jumlah INT NOT NULL,
+    total_harga INT NOT NULL,
+    
+    FOREIGN KEY (id_produk) REFERENCES Produk(id_produk)
 );
-
-
-INSERT INTO Produk (nama_produk, jenis_kayu, harga, stok)
-VALUES 
-('Meja Ukir Jepara','Jati',1500000,10),
-('Kursi Ukir','Mahoni',800000,20),
-('Lemari Ukir','Jati',2500000,5);
-
