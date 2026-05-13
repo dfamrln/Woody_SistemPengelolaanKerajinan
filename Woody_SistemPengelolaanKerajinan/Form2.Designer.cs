@@ -1,6 +1,6 @@
 ﻿namespace Woody_SistemPengelolaanKerajinan
 {
-    partial class Form2
+    partial class FormPesanan
     {
         /// <summary>
         /// Required designer variable.
@@ -28,241 +28,142 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnJumlah = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnTampil = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnTambah = new System.Windows.Forms.Button();
-            this.btnKoneksi = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtStok = new System.Windows.Forms.TextBox();
-            this.txtHarga = new System.Windows.Forms.TextBox();
-            this.txtJenis = new System.Windows.Forms.TextBox();
-            this.txtNama = new System.Windows.Forms.TextBox();
-            this.txtID = new System.Windows.Forms.TextBox();
+            this.btnLaporan = new System.Windows.Forms.Button();
+            this.txtStatusSearch = new System.Windows.Forms.TextBox();
+            this.btnInject = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(476, 344);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(91, 20);
-            this.lblTotal.TabIndex = 42;
-            this.lblTotal.Text = "Total Data :";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(250, 279);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 20);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Cari Produk";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(459, 289);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(100, 26);
-            this.txtSearch.TabIndex = 40;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(239, 390);
+            this.dataGridView1.Location = new System.Drawing.Point(239, 222);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(848, 245);
+            this.dataGridView1.Size = new System.Drawing.Size(848, 328);
             this.dataGridView1.TabIndex = 39;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnJumlah
             // 
-            this.btnJumlah.Location = new System.Drawing.Point(283, 327);
+            this.btnJumlah.Location = new System.Drawing.Point(239, 179);
             this.btnJumlah.Name = "btnJumlah";
-            this.btnJumlah.Size = new System.Drawing.Size(118, 28);
+            this.btnJumlah.Size = new System.Drawing.Size(142, 40);
             this.btnJumlah.TabIndex = 38;
-            this.btnJumlah.Text = "Jumlah Data";
+            this.btnJumlah.Text = "Jumlah Pesanan";
             this.btnJumlah.UseVisualStyleBackColor = true;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(704, 289);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(102, 35);
-            this.btnSearch.TabIndex = 37;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnJumlah.Click += new System.EventHandler(this.btnJumlah_Click);
             // 
             // btnTampil
             // 
-            this.btnTampil.Location = new System.Drawing.Point(704, 243);
+            this.btnTampil.Location = new System.Drawing.Point(985, 179);
             this.btnTampil.Name = "btnTampil";
             this.btnTampil.Size = new System.Drawing.Size(102, 40);
             this.btnTampil.TabIndex = 36;
             this.btnTampil.Text = "Tampilkan";
             this.btnTampil.UseVisualStyleBackColor = true;
+            this.btnTampil.Click += new System.EventHandler(this.btnTampil_Click);
             // 
-            // btnDelete
+            // lblTotal
             // 
-            this.btnDelete.Location = new System.Drawing.Point(704, 203);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(91, 34);
-            this.btnDelete.TabIndex = 35;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(715, 161);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(91, 38);
-            this.btnUpdate.TabIndex = 34;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnTambah
-            // 
-            this.btnTambah.Location = new System.Drawing.Point(704, 123);
-            this.btnTambah.Name = "btnTambah";
-            this.btnTambah.Size = new System.Drawing.Size(102, 42);
-            this.btnTambah.TabIndex = 33;
-            this.btnTambah.Text = "Tambah";
-            this.btnTambah.UseVisualStyleBackColor = true;
-            // 
-            // btnKoneksi
-            // 
-            this.btnKoneksi.Location = new System.Drawing.Point(704, 82);
-            this.btnKoneksi.Name = "btnKoneksi";
-            this.btnKoneksi.Size = new System.Drawing.Size(102, 38);
-            this.btnKoneksi.TabIndex = 32;
-            this.btnKoneksi.Text = "Koneksi";
-            this.btnKoneksi.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(250, 236);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 20);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Stok";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(250, 193);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "Harga";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(250, 161);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 20);
-            this.label3.TabIndex = 29;
-            this.label3.Text = "Jenis Kayu";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(250, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 20);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Nama Produk";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(383, 191);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(18, 20);
+            this.lblTotal.TabIndex = 42;
+            this.lblTotal.Text = "0";
+            this.lblTotal.Click += new System.EventHandler(this.lblTotal_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(250, 82);
+            this.label1.Location = new System.Drawing.Point(611, 88);
+            this.label1.MaximumSize = new System.Drawing.Size(100, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 20);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "ID_Produk";
+            this.label1.TabIndex = 100;
+            this.label1.Text = "PESANAN";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
-            // txtStok
+            // btnLaporan
             // 
-            this.txtStok.Location = new System.Drawing.Point(459, 247);
-            this.txtStok.Name = "txtStok";
-            this.txtStok.Size = new System.Drawing.Size(100, 26);
-            this.txtStok.TabIndex = 26;
+            this.btnLaporan.Location = new System.Drawing.Point(877, 179);
+            this.btnLaporan.Name = "btnLaporan";
+            this.btnLaporan.Size = new System.Drawing.Size(102, 40);
+            this.btnLaporan.TabIndex = 101;
+            this.btnLaporan.Text = "Laporan";
+            this.btnLaporan.UseVisualStyleBackColor = true;
+            this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
             // 
-            // txtHarga
+            // txtStatusSearch
             // 
-            this.txtHarga.Location = new System.Drawing.Point(459, 203);
-            this.txtHarga.Name = "txtHarga";
-            this.txtHarga.Size = new System.Drawing.Size(100, 26);
-            this.txtHarga.TabIndex = 25;
+            this.txtStatusSearch.Location = new System.Drawing.Point(566, 179);
+            this.txtStatusSearch.Name = "txtStatusSearch";
+            this.txtStatusSearch.Size = new System.Drawing.Size(228, 26);
+            this.txtStatusSearch.TabIndex = 102;
             // 
-            // txtJenis
+            // btnInject
             // 
-            this.txtJenis.Location = new System.Drawing.Point(459, 161);
-            this.txtJenis.Name = "txtJenis";
-            this.txtJenis.Size = new System.Drawing.Size(100, 26);
-            this.txtJenis.TabIndex = 24;
+            this.btnInject.Location = new System.Drawing.Point(985, 99);
+            this.btnInject.Name = "btnInject";
+            this.btnInject.Size = new System.Drawing.Size(81, 33);
+            this.btnInject.TabIndex = 103;
+            this.btnInject.Text = "Inject";
+            this.btnInject.UseVisualStyleBackColor = true;
+            this.btnInject.Click += new System.EventHandler(this.btnInject_Click);
             // 
-            // txtNama
+            // btnReset
             // 
-            this.txtNama.Location = new System.Drawing.Point(459, 123);
-            this.txtNama.Name = "txtNama";
-            this.txtNama.Size = new System.Drawing.Size(100, 26);
-            this.txtNama.TabIndex = 23;
+            this.btnReset.Location = new System.Drawing.Point(1097, 101);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(85, 28);
+            this.btnReset.TabIndex = 104;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // txtID
+            // btnSearch
             // 
-            this.txtID.Location = new System.Drawing.Point(459, 82);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(100, 26);
-            this.txtID.TabIndex = 22;
+            this.btnSearch.Location = new System.Drawing.Point(475, 179);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(85, 28);
+            this.btnSearch.TabIndex = 105;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // Form2
+            // FormPesanan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1326, 717);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnInject);
+            this.Controls.Add(this.txtStatusSearch);
+            this.Controls.Add(this.btnLaporan);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnJumlah);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnTampil);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnTambah);
-            this.Controls.Add(this.btnKoneksi);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtStok);
-            this.Controls.Add(this.txtHarga);
-            this.Controls.Add(this.txtJenis);
-            this.Controls.Add(this.txtNama);
-            this.Controls.Add(this.txtID);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.MinimizeBox = false;
+            this.Name = "FormPesanan";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.Click += new System.EventHandler(this.btnReset_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -270,27 +171,15 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnJumlah;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnTampil;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnTambah;
-        private System.Windows.Forms.Button btnKoneksi;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtStok;
-        private System.Windows.Forms.TextBox txtHarga;
-        private System.Windows.Forms.TextBox txtJenis;
-        private System.Windows.Forms.TextBox txtNama;
-        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Button btnLaporan;
+        private System.Windows.Forms.TextBox txtStatusSearch;
+        private System.Windows.Forms.Button btnInject;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
