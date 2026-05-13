@@ -274,12 +274,3 @@ BEGIN
     WHERE status = @status;
 END;
 GO
-
--- ============================================================
--- CEK HASIL
--- ============================================================
-SELECT * FROM vw_Produk;
-SELECT * FROM vw_DetailPesanan;
-SELECT * FROM vw_RingkasanLaporan;
-=======
->>>>>>> e2f70585c73c39eb86d8f88f69477002efc415aa
