@@ -15,20 +15,13 @@ CREATE TABLE Produk (
 CREATE TABLE Pesanan (
     id_pesanan INT IDENTITY(1,1) PRIMARY KEY,
     tanggal_pesanan DATE NOT NULL,
-    status VARCHAR(50),
-    total_harga INT
-);
-
-CREATE TABLE DetailPesanan (
-    id_detail INT IDENTITY(1,1) PRIMARY KEY,
-    id_pesanan INT,
-    id_produk INT,
-    jumlah INT,
-    subtotal INT,
-
-    FOREIGN KEY (id_pesanan) REFERENCES Pesanan(id_pesanan),
+    id_produk INT NOT NULL,
+    jumlah INT NOT NULL,
+    total_harga INT NOT NULL,
+    
     FOREIGN KEY (id_produk) REFERENCES Produk(id_produk)
 );
+<<<<<<< HEAD
 
 INSERT INTO Produk (nama_produk, jenis_kayu, harga, stok)
 VALUES 
@@ -288,3 +281,5 @@ GO
 SELECT * FROM vw_Produk;
 SELECT * FROM vw_DetailPesanan;
 SELECT * FROM vw_RingkasanLaporan;
+=======
+>>>>>>> e2f70585c73c39eb86d8f88f69477002efc415aa
