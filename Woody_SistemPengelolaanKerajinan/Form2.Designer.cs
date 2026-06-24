@@ -38,6 +38,12 @@
             this.btnInject = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.labelProduk = new System.Windows.Forms.Label();
+            this.cmbProduk = new System.Windows.Forms.ComboBox();
+            this.labelJumlah = new System.Windows.Forms.Label();
+            this.txtJumlah = new System.Windows.Forms.TextBox();
+            this.btnTambahPesanan = new System.Windows.Forms.Button();
+            this.btnHapusPesanan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +52,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(239, 222);
+            this.dataGridView1.Location = new System.Drawing.Point(218, 339);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
@@ -58,7 +64,7 @@
             // 
             // btnJumlah
             // 
-            this.btnJumlah.Location = new System.Drawing.Point(239, 179);
+            this.btnJumlah.Location = new System.Drawing.Point(224, 289);
             this.btnJumlah.Name = "btnJumlah";
             this.btnJumlah.Size = new System.Drawing.Size(142, 40);
             this.btnJumlah.TabIndex = 38;
@@ -68,7 +74,7 @@
             // 
             // btnTampil
             // 
-            this.btnTampil.Location = new System.Drawing.Point(985, 179);
+            this.btnTampil.Location = new System.Drawing.Point(970, 289);
             this.btnTampil.Name = "btnTampil";
             this.btnTampil.Size = new System.Drawing.Size(102, 40);
             this.btnTampil.TabIndex = 36;
@@ -79,7 +85,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(383, 191);
+            this.lblTotal.Location = new System.Drawing.Point(368, 301);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(18, 20);
             this.lblTotal.TabIndex = 42;
@@ -89,17 +95,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(611, 88);
-            this.label1.MaximumSize = new System.Drawing.Size(100, 0);
+            this.label1.Font = new System.Drawing.Font("Bookman Old Style", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.MaximumSize = new System.Drawing.Size(1000, 1000);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
-            this.label1.TabIndex = 100;
+            this.label1.Size = new System.Drawing.Size(298, 65);
+            this.label1.TabIndex = 1000;
             this.label1.Text = "PESANAN";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // btnLaporan
             // 
-            this.btnLaporan.Location = new System.Drawing.Point(877, 179);
+            this.btnLaporan.Location = new System.Drawing.Point(862, 289);
             this.btnLaporan.Name = "btnLaporan";
             this.btnLaporan.Size = new System.Drawing.Size(102, 40);
             this.btnLaporan.TabIndex = 101;
@@ -109,16 +116,17 @@
             // 
             // txtStatusSearch
             // 
-            this.txtStatusSearch.Location = new System.Drawing.Point(566, 179);
+            this.txtStatusSearch.Location = new System.Drawing.Point(551, 289);
+            this.txtStatusSearch.Multiline = true;
             this.txtStatusSearch.Name = "txtStatusSearch";
-            this.txtStatusSearch.Size = new System.Drawing.Size(228, 26);
+            this.txtStatusSearch.Size = new System.Drawing.Size(228, 32);
             this.txtStatusSearch.TabIndex = 102;
             // 
             // btnInject
             // 
-            this.btnInject.Location = new System.Drawing.Point(985, 99);
+            this.btnInject.Location = new System.Drawing.Point(985, 65);
             this.btnInject.Name = "btnInject";
-            this.btnInject.Size = new System.Drawing.Size(81, 33);
+            this.btnInject.Size = new System.Drawing.Size(81, 41);
             this.btnInject.TabIndex = 103;
             this.btnInject.Text = "Inject";
             this.btnInject.UseVisualStyleBackColor = true;
@@ -126,9 +134,9 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(1097, 101);
+            this.btnReset.Location = new System.Drawing.Point(1091, 68);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(85, 28);
+            this.btnReset.Size = new System.Drawing.Size(85, 39);
             this.btnReset.TabIndex = 104;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -136,13 +144,79 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(475, 179);
+            this.btnSearch.Location = new System.Drawing.Point(455, 289);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(85, 28);
+            this.btnSearch.Size = new System.Drawing.Size(90, 32);
             this.btnSearch.TabIndex = 105;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // labelProduk
+            // 
+            this.labelProduk.AutoSize = true;
+            this.labelProduk.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.labelProduk.Location = new System.Drawing.Point(20, 100);
+            this.labelProduk.Name = "labelProduk";
+            this.labelProduk.Size = new System.Drawing.Size(85, 28);
+            this.labelProduk.TabIndex = 106;
+            this.labelProduk.Text = "Produk:";
+            // 
+            // cmbProduk
+            // 
+            this.cmbProduk.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProduk.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbProduk.Location = new System.Drawing.Point(111, 97);
+            this.cmbProduk.Name = "cmbProduk";
+            this.cmbProduk.Size = new System.Drawing.Size(174, 36);
+            this.cmbProduk.TabIndex = 107;
+            // 
+            // labelJumlah
+            // 
+            this.labelJumlah.AutoSize = true;
+            this.labelJumlah.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.labelJumlah.Location = new System.Drawing.Point(20, 154);
+            this.labelJumlah.Name = "labelJumlah";
+            this.labelJumlah.Size = new System.Drawing.Size(85, 28);
+            this.labelJumlah.TabIndex = 108;
+            this.labelJumlah.Text = "Jumlah:";
+            // 
+            // txtJumlah
+            // 
+            this.txtJumlah.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtJumlah.Location = new System.Drawing.Point(121, 154);
+            this.txtJumlah.Name = "txtJumlah";
+            this.txtJumlah.Size = new System.Drawing.Size(80, 34);
+            this.txtJumlah.TabIndex = 109;
+            this.txtJumlah.Text = "1";
+            // 
+            // btnTambahPesanan
+            // 
+            this.btnTambahPesanan.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnTambahPesanan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTambahPesanan.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnTambahPesanan.ForeColor = System.Drawing.Color.White;
+            this.btnTambahPesanan.Location = new System.Drawing.Point(337, 97);
+            this.btnTambahPesanan.Name = "btnTambahPesanan";
+            this.btnTambahPesanan.Size = new System.Drawing.Size(146, 45);
+            this.btnTambahPesanan.TabIndex = 110;
+            this.btnTambahPesanan.Text = "➕ Tambah Pesanan";
+            this.btnTambahPesanan.UseVisualStyleBackColor = false;
+            this.btnTambahPesanan.Click += new System.EventHandler(this.btnTambahPesanan_Click);
+            // 
+            // btnHapusPesanan
+            // 
+            this.btnHapusPesanan.BackColor = System.Drawing.Color.IndianRed;
+            this.btnHapusPesanan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHapusPesanan.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnHapusPesanan.ForeColor = System.Drawing.Color.White;
+            this.btnHapusPesanan.Location = new System.Drawing.Point(337, 148);
+            this.btnHapusPesanan.Name = "btnHapusPesanan";
+            this.btnHapusPesanan.Size = new System.Drawing.Size(146, 45);
+            this.btnHapusPesanan.TabIndex = 111;
+            this.btnHapusPesanan.Text = "🗑️ Hapus Pesanan";
+            this.btnHapusPesanan.UseVisualStyleBackColor = false;
+            this.btnHapusPesanan.Click += new System.EventHandler(this.btnHapusPesanan_Click);
             // 
             // FormPesanan
             // 
@@ -159,6 +233,12 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnJumlah);
             this.Controls.Add(this.btnTampil);
+            this.Controls.Add(this.labelProduk);
+            this.Controls.Add(this.cmbProduk);
+            this.Controls.Add(this.labelJumlah);
+            this.Controls.Add(this.txtJumlah);
+            this.Controls.Add(this.btnTambahPesanan);
+            this.Controls.Add(this.btnHapusPesanan);
             this.MinimizeBox = false;
             this.Name = "FormPesanan";
             this.Text = " ";
@@ -171,6 +251,10 @@
         }
 
         #endregion
+
+        // ============================================================
+        // DEKLARASI VARIABEL (SUDAH ADA)
+        // ============================================================
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnJumlah;
         private System.Windows.Forms.Button btnTampil;
@@ -181,5 +265,15 @@
         private System.Windows.Forms.Button btnInject;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnSearch;
+
+        // ============================================================
+        // DEKLARASI VARIABEL BARU (TAMBAHKAN)
+        // ============================================================
+        private System.Windows.Forms.ComboBox cmbProduk;
+        private System.Windows.Forms.TextBox txtJumlah;
+        private System.Windows.Forms.Button btnTambahPesanan;
+        private System.Windows.Forms.Button btnHapusPesanan;
+        private System.Windows.Forms.Label labelProduk;
+        private System.Windows.Forms.Label labelJumlah;
     }
 }
