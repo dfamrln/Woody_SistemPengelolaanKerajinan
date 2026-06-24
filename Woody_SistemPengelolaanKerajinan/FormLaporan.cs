@@ -10,8 +10,7 @@ namespace Woody_SistemPengelolaanKerajinan
         // ============================================================
         // KONEKSI & BINDING
         // ============================================================
-        private readonly string connStr =
-            "Server=P\\SQLEXPRESS;Initial Catalog=UkiranKayuDB;Integrated Security=True;";
+        private readonly string connStr = "Server=P\\SQLLL;Initial Catalog=UkiranKayuDB;User ID=sa;Password=Daffa245206;";
 
         private SqlConnection conn;
         private BindingSource bs = new BindingSource();
@@ -92,5 +91,11 @@ namespace Woody_SistemPengelolaanKerajinan
         }
 
         private void FromLaporan_FormClosing(object sender, FormClosingEventArgs e) => TutupKoneksi();
+
+        private void btnLaporanPembukuan_Click(object sender, EventArgs e)
+        {
+            FormLaporanPembukuan flp = new FormLaporanPembukuan();
+            flp.Show();
+        }
     }
 }

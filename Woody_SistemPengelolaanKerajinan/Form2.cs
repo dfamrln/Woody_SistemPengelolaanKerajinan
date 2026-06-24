@@ -8,8 +8,7 @@ namespace Woody_SistemPengelolaanKerajinan
 {
     public partial class FormPesanan : System.Windows.Forms.Form
     {
-        private readonly string connStr =
-            "Server=P\\SQLEXPRESS;Initial Catalog=UkiranKayuDB;Integrated Security=True;";
+        private readonly string connStr = "Server=P\\SQLLL;Initial Catalog=UkiranKayuDB;User ID=sa;Password=Daffa245206;";
 
         private SqlConnection conn;
         private BindingSource bs = new BindingSource();

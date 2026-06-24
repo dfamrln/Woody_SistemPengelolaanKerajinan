@@ -10,8 +10,7 @@ namespace Woody_SistemPengelolaanKerajinan
         // ============================================================
         // KONEKSI & BINDING
         // ============================================================
-        private readonly string connStr =
-            "Data Source=P\\SQLEXPRESS;Initial Catalog=UkiranKayuDB;Integrated Security=True";
+        private readonly string connStr = "Server=P\\SQLLL;Initial Catalog=UkiranKayuDB;User ID=sa;Password=Daffa245206;";
 
         private SqlConnection conn;
         private BindingSource bs = new BindingSource();
@@ -245,7 +244,7 @@ namespace Woody_SistemPengelolaanKerajinan
             tampilData();
         }
 
-        void tampilData()
+        public void tampilData()
         {
             try
             {
@@ -462,5 +461,11 @@ namespace Woody_SistemPengelolaanKerajinan
         private void lblTotal_Click(object sender, EventArgs e) { }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) => TutupKoneksi();
+
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            FormImportExcel fie = new FormImportExcel();
+            fie.ShowDialog();
+        }
     }
 }

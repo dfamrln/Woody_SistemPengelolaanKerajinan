@@ -34,6 +34,7 @@
             this.lblPending = new System.Windows.Forms.Label();
             this.lblSelesai = new System.Windows.Forms.Label();
             this.lblDiproses = new System.Windows.Forms.Label();
+            this.btnLaporanPembukuan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,11 +97,22 @@
             this.lblDiproses.TabIndex = 5;
             this.lblDiproses.Text = "Diproses";
             // 
+            // btnLaporanPembukuan
+            // 
+            this.btnLaporanPembukuan.Location = new System.Drawing.Point(921, 86);
+            this.btnLaporanPembukuan.Name = "btnLaporanPembukuan";
+            this.btnLaporanPembukuan.Size = new System.Drawing.Size(168, 43);
+            this.btnLaporanPembukuan.TabIndex = 6;
+            this.btnLaporanPembukuan.Text = "LaporanPembukuan";
+            this.btnLaporanPembukuan.UseVisualStyleBackColor = true;
+            this.btnLaporanPembukuan.Click += new System.EventHandler(this.btnLaporanPembukuan_Click);
+            // 
             // FromLaporan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1119, 629);
+            this.Controls.Add(this.btnLaporanPembukuan);
             this.Controls.Add(this.lblDiproses);
             this.Controls.Add(this.lblSelesai);
             this.Controls.Add(this.lblPending);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Label lblPending;
         private System.Windows.Forms.Label lblSelesai;
         private System.Windows.Forms.Label lblDiproses;
+        private System.Windows.Forms.Button btnLaporanPembukuan;
     }
 }

@@ -21,7 +21,6 @@ CREATE TABLE Pesanan (
     
     FOREIGN KEY (id_produk) REFERENCES Produk(id_produk)
 );
-<<<<<<< HEAD
 
 INSERT INTO Produk (nama_produk, jenis_kayu, harga, stok)
 VALUES 
@@ -273,13 +272,143 @@ BEGIN
     SELECT * FROM vw_DetailPesanan
     WHERE status = @status;
 END;
+
+
+-- ============================================================
+-- VIEW untuk Laporan Pembukuan
+-- ============================================================
+
+-- View detail penjualan
+CREATE OR ALTER VIEW vw_LaporanPenjualan AS
+SELECT 
+    p.id_pesanan,
+    p.tanggal_pesanan,
+    p.status,
+    pr.nama_produk,
+    pr.jenis_kayu,
+    pr.harga AS harga_satuan,
+    dp.jumlah,
+    dp.subtotal,
+    p.total_harga,
+    FORMAT(p.tanggal_pesanan, 'dd/MM/yyyy') AS tgl_format,
+    FORMAT(p.tanggal_pesanan, 'MMMM yyyy', 'id-ID') AS bulan_tahun
+FROM Pesanan p
+JOIN DetailPesanan dp ON p.id_pesanan = dp.id_pesanan
+JOIN Produk pr ON dp.id_produk = pr.id_produk;
+GO
+
+-- View ringkasan pembukuan
+CREATE OR ALTER VIEW vw_RingkasanPembukuan AS
+SELECT
+    -- Pendapatan
+    ISNULL((SELECT SUM(total_harga) FROM Pesanan), 0) AS total_pendapatan,
+    ISNULL((SELECT SUM(total_harga) FROM Pesanan WHERE status = 'Selesai'), 0) AS pendapatan_selesai,
+    ISNULL((SELECT SUM(total_harga) FROM Pesanan WHERE status = 'Pending'), 0) AS pendapatan_pending,
+    ISNULL((SELECT SUM(total_harga) FROM Pesanan WHERE status = 'Diproses'), 0) AS pendapatan_diproses,
+    
+    -- Aset / Inventaris
+    ISNULL((SELECT SUM(harga * stok) FROM Produk), 0) AS total_aset,
+    ISNULL((SELECT COUNT(*) FROM Produk), 0) AS total_produk,
+    ISNULL((SELECT SUM(stok) FROM Produk), 0) AS total_stok,
+    
+    -- Statistik
+    ISNULL((SELECT COUNT(*) FROM Pesanan), 0) AS total_pesanan,
+    ISNULL((SELECT SUM(jumlah) FROM DetailPesanan), 0) AS total_produk_terjual,
+    
+    -- Produk terlaris
+    (SELECT TOP 1 pr.nama_produk 
+     FROM DetailPesanan dp 
+     JOIN Produk pr ON dp.id_produk = pr.id_produk 
+     GROUP BY pr.nama_produk 
+     ORDER BY SUM(dp.jumlah) DESC) AS produk_terlaris,
+    
+    -- Stok menipis
+    (SELECT COUNT(*) FROM Produk WHERE stok <= 5 AND stok > 0) AS stok_menipis,
+    (SELECT COUNT(*) FROM Produk WHERE stok = 0) AS stok_habis,
+    
+    GETDATE() AS tanggal_cetak
 GO
 
 -- ============================================================
--- CEK HASIL
+-- SP untuk Laporan Pembukuan dengan Filter Periode
 -- ============================================================
-SELECT * FROM vw_Produk;
-SELECT * FROM vw_DetailPesanan;
-SELECT * FROM vw_RingkasanLaporan;
-=======
->>>>>>> e2f70585c73c39eb86d8f88f69477002efc415aa
+CREATE OR ALTER PROCEDURE sp_LaporanPembukuan
+    @bulan INT = NULL,
+    @tahun INT = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Jika bulan dan tahun NULL, ambil semua data
+    SELECT 
+        p.id_pesanan,
+        p.tanggal_pesanan,
+        p.status,
+        pr.nama_produk,
+        pr.jenis_kayu,
+        pr.harga AS harga_satuan,
+        dp.jumlah,
+        dp.subtotal,
+        p.total_harga,
+        FORMAT(p.tanggal_pesanan, 'dd/MM/yyyy') AS tgl_format,
+        MONTH(p.tanggal_pesanan) AS bulan,
+        YEAR(p.tanggal_pesanan) AS tahun
+    FROM Pesanan p
+    JOIN DetailPesanan dp ON p.id_pesanan = dp.id_pesanan
+    JOIN Produk pr ON dp.id_produk = pr.id_produk
+    WHERE 
+        (@bulan IS NULL OR MONTH(p.tanggal_pesanan) = @bulan)
+        AND (@tahun IS NULL OR YEAR(p.tanggal_pesanan) = @tahun)
+    ORDER BY p.tanggal_pesanan DESC;
+END
+GO
+
+
+UPDATE DetailPesanan 
+SET subtotal = (SELECT harga FROM Produk WHERE id_produk = DetailPesanan.id_produk) * jumlah
+WHERE subtotal IS NULL OR subtotal = 0;
+
+UPDATE Pesanan 
+SET total_harga = (SELECT SUM(subtotal) FROM DetailPesanan WHERE id_pesanan = Pesanan.id_pesanan)
+WHERE total_harga IS NULL OR total_harga = 0;
+
+
+SELECT 
+    p.id_pesanan,
+    p.tanggal_pesanan,
+    FORMAT(p.tanggal_pesanan, 'dd/MM/yyyy') AS tgl_format,
+    p.status,
+    pr.nama_produk,
+    pr.jenis_kayu,
+    pr.harga AS harga_satuan,
+    dp.jumlah,
+    pr.harga * dp.jumlah AS subtotal,           
+    (SELECT SUM(pr2.harga * dp2.jumlah) 
+     FROM DetailPesanan dp2 
+     JOIN Produk pr2 ON dp2.id_produk = pr2.id_produk 
+     WHERE dp2.id_pesanan = p.id_pesanan) AS total_harga   
+FROM Pesanan p
+JOIN DetailPesanan dp ON p.id_pesanan = dp.id_pesanan
+JOIN Produk pr ON dp.id_produk = pr.id_produk
+
+
+-- Update subtotal di DetailPesanan
+UPDATE dp
+SET dp.subtotal = pr.harga * dp.jumlah
+FROM DetailPesanan dp
+JOIN Produk pr ON dp.id_produk = pr.id_produk;
+
+-- Update total_harga di Pesanan
+UPDATE p
+SET p.total_harga = (
+    SELECT SUM(dp.subtotal) 
+    FROM DetailPesanan dp 
+    WHERE dp.id_pesanan = p.id_pesanan
+)
+FROM Pesanan p;
+
+-- Cek hasil
+SELECT * FROM DetailPesanan;
+SELECT * FROM Pesanan;
+
+SELECT id_produk, nama_produk, harga FROM Produk;
