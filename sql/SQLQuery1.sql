@@ -515,9 +515,6 @@ SELECT * FROM DetailPesanan;
 SELECT * FROM Pesanan;
 
 SELECT id_produk, nama_produk, harga FROM Produk;
-=======
->>>>>>> c152a2e49239237db87aec619a7d94085d1a60b3
-
 
 -- Cek trigger Insert
 -- Cek trigger Insert
