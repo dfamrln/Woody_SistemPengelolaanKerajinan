@@ -408,6 +408,108 @@ SET p.total_harga = (
 )
 FROM Pesanan p;
 
+
+USE UkiranKayuDB;
+GO
+
+-- ============================================================
+-- TABEL LOG (BUAT DULU JIKA BELUM ADA)
+-- ============================================================
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='LogProduk' AND xtype='U')
+CREATE TABLE LogProduk (
+    id_log        INT IDENTITY(1,1) PRIMARY KEY,
+    id_produk     INT,
+    aksi          VARCHAR(20),
+    nama_lama     VARCHAR(100),
+    nama_baru     VARCHAR(100),
+    harga_lama    INT,
+    harga_baru    INT,
+    stok_lama     INT,
+    stok_baru     INT,
+    username      VARCHAR(50),
+    waktu_aksi    DATETIME DEFAULT GETDATE()
+);
+GO
+
+-- ============================================================
+-- TRIGGER INSERT
+-- ============================================================
+CREATE OR ALTER TRIGGER trg_Produk_Insert
+ON Produk
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO LogProduk (id_produk, aksi, nama_baru, harga_baru, stok_baru, username)
+    SELECT 
+        id_produk,
+        'INSERT',
+        nama_produk,
+        harga,
+        stok,
+        SYSTEM_USER
+    FROM inserted;
+END;
+GO
+
+-- ============================================================
+-- TRIGGER UPDATE
+-- ============================================================
+CREATE OR ALTER TRIGGER trg_Produk_Update
+ON Produk
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO LogProduk (id_produk, aksi, nama_lama, nama_baru, harga_lama, harga_baru, stok_lama, stok_baru, username)
+    SELECT 
+        i.id_produk,
+        'UPDATE',
+        d.nama_produk,
+        i.nama_produk,
+        d.harga,
+        i.harga,
+        d.stok,
+        i.stok,
+        SYSTEM_USER
+    FROM inserted i
+    INNER JOIN deleted d ON i.id_produk = d.id_produk;
+END;
+GO
+
+-- ============================================================
+-- TRIGGER DELETE
+-- ============================================================
+CREATE OR ALTER TRIGGER trg_Produk_Delete
+ON Produk
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO LogProduk (id_produk, aksi, nama_lama, harga_lama, stok_lama, username)
+    SELECT 
+        id_produk,
+        'DELETE',
+        nama_produk,
+        harga,
+        stok,
+        SYSTEM_USER
+    FROM deleted;
+END;
+GO
+
+-- ============================================================
+-- CEK TRIGGER
+-- ============================================================
+SELECT 
+    name AS TriggerName,
+    OBJECT_NAME(parent_id) AS TableName
+FROM sys.triggers
+WHERE parent_class = 1;
+
 -- Cek hasil
 SELECT * FROM DetailPesanan;
 SELECT * FROM Pesanan;
@@ -415,3 +517,19 @@ SELECT * FROM Pesanan;
 SELECT id_produk, nama_produk, harga FROM Produk;
 =======
 >>>>>>> c152a2e49239237db87aec619a7d94085d1a60b3
+
+
+-- Cek trigger Insert
+-- Cek trigger Insert
+EXEC sp_helptext 'trg_Produk_Insert';
+
+-- Cek trigger Update
+EXEC sp_helptext 'trg_Produk_Update';
+
+-- Cek trigger Delete
+EXEC sp_helptext 'trg_Produk_Delete';
+
+SELECT * FROM LogProduk
+ORDER BY waktu_aksi DESC;
+
+SELECT * FROM LogProduk WHERE aksi = 'INSERT';
